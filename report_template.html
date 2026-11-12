@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{TITLE}}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --primary-light: #e0f2fe;
+      --accent: #2563eb;
+      --success: #10b981;
+      --success-dark: #059669;
+      --success-bg: #ecfdf5;
+      --warning: #f59e0b;
+      --warning-bg: #fffbeb;
+      --danger: #ef4444;
+      --danger-bg: #fef2f2;
+      --neutral-900: #0f172a;
+      --neutral-800: #1e293b;
+      --neutral-700: #334155;
+      --neutral-600: #475569;
+      --neutral-500: #64748b;
+      --neutral-400: #94a3b8;
+      --neutral-300: #cbd5e1;
+      --neutral-200: #e2e8f0;
+      --neutral-100: #f1f5f9;
+      --neutral-50: #f8fafc;
+      --white: #ffffff;
+      --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.06), 0 1px 2px 0 rgb(0 0 0 / 0.04);
+      --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+      --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.07), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+      --radius: 14px;
+      --radius-sm: 8px;
+      --radius-lg: 18px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #f3f6f9;
+      color: var(--neutral-800);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* 1. TOP BAR WITH BRANDING (TOP TEN WEBSITE MARKETING) */
+    header.top-bar {
+      background: linear-gradient(135deg, #0c1526 0%, #16243b 60%, #1e3352 100%);
+      color: var(--white);
+      padding: 2.25rem 2rem 2.5rem;
+      border-bottom: 4px solid var(--primary);
+      position: relative;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .branding-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(2, 132, 199, 0.22);
+      border: 1px solid rgba(56, 189, 248, 0.45);
+      color: #7dd3fc;
+      padding: 0.35rem 0.9rem;
+      border-radius: 9999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.75rem;
+    }
+
+    .header-title h1 {
+      font-size: 2.15rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: var(--white);
+      margin-bottom: 0.45rem;
+    }
+
+    .header-title p {
+      color: #94a3b8;
+      font-size: 0.95rem;
+      max-width: 780px;
+      line-height: 1.55;
+    }
+
+    .header-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      padding: 1.25rem 1.6rem;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.85rem;
+      min-width: 280px;
+    }
+
+    .header-meta div {
+      display: flex;
+      justify-content: space-between;
+      gap: 1.25rem;
+    }
+
+    .header-meta span.label { color: #94a3b8; }
+    .header-meta span.val { font-weight: 600; color: var(--white); font-family: 'JetBrains Mono', monospace; }
+
+    main {
+      padding-top: 1.75rem;
+      padding-bottom: 4rem;
+    }
+
+    /* 2. EXECUTIVE SUMMARY (SCREENSHOT 1 STYLE) */
+    .executive-summary-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 2.25rem 2.5rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid #e2e8f0;
+      margin-bottom: 1.75rem;
+    }
+
+    .executive-summary-card h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.25rem;
+    }
+
+    .executive-summary-card p {
+      font-size: 1rem;
+      color: #334155;
+      line-height: 1.68;
+      margin-bottom: 1rem;
+    }
+
+    .executive-summary-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .executive-summary-card strong {
+      color: #0f172a;
+      font-weight: 700;
+    }
+
+    /* 3. CARDS SECTION (SCREENSHOT 2 STYLE) */
+    .cards-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .metric-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.65rem 1.75rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid #e5e9f0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .metric-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .metric-card.highlight-green {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+    }
+
+    .card-label {
+      font-size: 0.775rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #64748b;
+      margin-bottom: 0.75rem;
+    }
+
+    .metric-card.highlight-green .card-label {
+      color: #15803d;
+    }
+
+    .card-num {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.65rem;
+    }
+
+    .metric-card.highlight-green .card-num {
+      color: #15803d;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .card-footer-text {
+      font-size: 0.85rem;
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    .metric-card.highlight-green .card-footer-text {
+      color: #166534;
+      font-weight: 600;
+    }
+
+    /* 4. BEFORE vs AFTER OPTIMIZATION IMPACT MATRIX (SCREENSHOT 3 STYLE) */
+    .section-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 2rem 2.25rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid #e2e8f0;
+      margin-bottom: 2rem;
+    }
+
+    .section-header {
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.02em;
+    }
+
+    .section-subtitle {
+      font-size: 0.875rem;
+      color: #64748b;
+      margin-top: 0.25rem;
+    }
+
+    .matrix-table-wrap {
+      overflow-x: auto;
+      border-radius: var(--radius-sm);
+      border: 1px solid #e2e8f0;
+    }
+
+    table.matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.95rem;
+    }
+
+    table.matrix-table th {
+      background: #f8fafc;
+      color: #334155;
+      font-weight: 700;
+      padding: 1rem 1.25rem;
+      border-bottom: 2px solid #e2e8f0;
+      font-size: 0.9rem;
+    }
+
+    table.matrix-table th:nth-child(2),
+    table.matrix-table th:nth-child(3),
+    table.matrix-table th:nth-child(4) {
+      text-align: right;
+      width: 16%;
+    }
+
+    table.matrix-table td {
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid #f1f5f9;
+      color: #1e293b;
+    }
+
+    table.matrix-table td:nth-child(2),
+    table.matrix-table td:nth-child(3),
+    table.matrix-table td:nth-child(4) {
+      text-align: right;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+    }
+
+    table.matrix-table tbody tr:hover {
+      background: #f8fafc;
+    }
+
+    table.matrix-table tr.total-row {
+      background: #f8fafc;
+      font-weight: 800;
+      border-top: 2px solid #cbd5e1;
+    }
+
+    table.matrix-table tr.total-row td {
+      color: #0f172a;
+      font-size: 1rem;
+      padding: 1.15rem 1.25rem;
+    }
+
+    .val-change-pos {
+      color: #10b981;
+      font-weight: 700;
+    }
+
+    .val-change-neu {
+      color: #64748b;
+    }
+
+    /* 5. CHARTS ROW */
+    .charts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .chart-container {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      border: 1px solid #e2e8f0;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .chart-container h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 1.25rem;
+    }
+
+    .chart-wrapper {
+      position: relative;
+      height: 270px;
+      width: 100%;
+    }
+
+    /* 6. PAGE-BY-PAGE RESULTS (SCREENSHOT 4 STYLE) */
+    .table-controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .search-input-group {
+      position: relative;
+      min-width: 320px;
+      flex: 1;
+      max-width: 440px;
+    }
+
+    .search-input-group input {
+      width: 100%;
+      padding: 0.65rem 1rem 0.65rem 2.4rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid #cbd5e1;
+      font-size: 0.875rem;
+      background: var(--white);
+      transition: all 0.2s;
+    }
+
+    .search-input-group input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 0.85rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94a3b8;
+      pointer-events: none;
+    }
+
+    .table-wrap-page {
+      overflow-x: auto;
+      border-radius: var(--radius-sm);
+      border: 1px solid #e2e8f0;
+    }
+
+    table.page-results-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+
+    table.page-results-table th {
+      background: #f8fafc;
+      color: #334155;
+      font-weight: 700;
+      padding: 0.95rem 1.25rem;
+      font-size: 0.85rem;
+      border-bottom: 2px solid #e2e8f0;
+      white-space: nowrap;
+    }
+
+    table.page-results-table td {
+      padding: 0.95rem 1.25rem;
+      border-bottom: 1px solid #f1f5f9;
+      color: #1e293b;
+      vertical-align: middle;
+    }
+
+    table.page-results-table tbody tr:hover {
+      background: #f8fafc;
+    }
+
+    .badge-pill {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .badge-very-good {
+      background: #10b981;
+      color: #ffffff;
+    }
+
+    .badge-good {
+      background: #3b82f6;
+      color: #ffffff;
+    }
+
+    .what-is-left-btn {
+      color: #2563eb;
+      font-weight: 600;
+      font-size: 0.825rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    .what-is-left-btn:hover {
+      text-decoration: underline;
+      color: #1d4ed8;
+    }
+
+    .expandable-page-row {
+      cursor: pointer;
+    }
+
+    .page-details-row {
+      display: none;
+      background: #f8fafc;
+    }
+
+    .page-details-row.open {
+      display: table-row;
+    }
+
+    .page-details-box {
+      padding: 1.25rem 1.5rem;
+      background: #f1f5f9;
+      border-radius: 8px;
+      margin: 0.5rem 1rem 1rem;
+      border: 1px solid #e2e8f0;
+    }
+
+    .diff-two-col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .diff-box {
+      background: #ffffff;
+      padding: 1rem;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .diff-box h5 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: #64748b;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .old-snippet {
+      background: #fee2e2;
+      color: #991b1b;
+      padding: 0.5rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      line-height: 1.4;
+      margin-bottom: 0.4rem;
+    }
+
+    .new-snippet {
+      background: #dcfce7;
+      color: #166534;
+      padding: 0.5rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      line-height: 1.4;
+      font-weight: 500;
+    }
+
+    .pagination-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1.25rem;
+      font-size: 0.85rem;
+      color: #64748b;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .pagination-buttons {
+      display: flex;
+      gap: 0.35rem;
+    }
+
+    .page-btn {
+      padding: 0.35rem 0.75rem;
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.825rem;
+      font-weight: 600;
+      color: #475569;
+    }
+
+    .page-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      font-size: 0.85rem;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      margin-top: 2rem;
+    }
+
+    @media print {
+      header.top-bar { background: #0c1526 !important; -webkit-print-color-adjust: exact; }
+      .table-controls, .pagination-bar { display: none !important; }
+      .page-details-row { display: table-row !important; }
+    }
+  
+    /* --- additions for data-driven values (reference look unchanged) --- */
+    .val-change-neg { color: #ef4444; font-weight: 700; }
+    /* the reference's `.container { padding: 0 1.5rem }` cancelled main's top padding, so the summary card touched the header */
+    main.container { padding-top: 2.5rem; }
+    .gain-up { color: #10b981; font-weight: 700; }
+    /* the reference's table-cell colour rule is more specific than the plain classes, so state the colours explicitly */
+    table td.val-change-pos { color: #10b981; font-weight: 700; }
+    table td.val-change-neg { color: #ef4444; font-weight: 700; }
+    table td.val-change-neu { color: #64748b; }
+    table.matrix-table tr.total-row td.val-change-pos { color: #10b981; }
+    table.matrix-table tr.total-row td.val-change-neg { color: #ef4444; }
+    table.matrix-table tr.total-row td.val-change-neu { color: #64748b; }
+    .badge-excellent { background: #059669; color: #ffffff; }
+    .badge-needs-improvement { background: #f59e0b; color: #ffffff; }
+    .badge-poor { background: #ef4444; color: #ffffff; }
+    .crit-chip { display: inline-block; background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; border-radius: 6px; padding: 0.1rem 0.5rem; font-size: 0.72rem; font-weight: 600; margin: 0.1rem 0.25rem 0.1rem 0; }
+    .warn-chip { display: inline-block; background: #fffbeb; color: #b45309; border: 1px solid #fde68a; border-radius: 6px; padding: 0.1rem 0.5rem; font-size: 0.72rem; font-weight: 600; margin: 0.1rem 0.25rem 0.1rem 0; }
+    .what-is-left-btn.none { color: #15803d; cursor: default; }
+    .export-csv-btn { padding: 0.62rem 1.1rem; border: 1px solid #cbd5e1; background: #ffffff; border-radius: 8px; cursor: pointer;
+      font-size: 0.85rem; font-weight: 700; color: #334155; font-family: inherit; display: inline-flex; align-items: center; gap: 0.45rem; text-decoration: none;
+      box-shadow: var(--shadow-sm); }
+    .export-csv-btn[hidden] { display: none; }
+    .export-csv-btn:hover { background: #f0f9ff; border-color: var(--primary); color: var(--primary-dark); }
+    .what-is-left-btn.none:hover { text-decoration: none; color: #15803d; }
+    .what-is-left-btn.none:hover { text-decoration: none; color: #15803d; }
+    .remaining-list { margin: 0.35rem 0 0 1.1rem; }
+    .details-grid { display: grid; grid-template-columns: minmax(300px, 0.9fr) 1.5fr; gap: 1rem; align-items: start; }
+    .cat-card, .actions-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 6px; padding: 0.85rem 1rem; font-size: 0.8rem; color: #475569; }
+    .cat-card h5 { font-size: 0.75rem; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 0.5rem; }
+    table.page-results-table table.cat-score-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+    table.page-results-table table.cat-score-table th { background: #f8fafc; color: #334155; padding: 0.35rem 0.5rem; font-size: 0.72rem; border-bottom: 1px solid #e2e8f0; text-align: right; }
+    table.page-results-table table.cat-score-table th:first-child { text-align: left; }
+    table.page-results-table table.cat-score-table td { padding: 0.35rem 0.5rem; border-bottom: 1px solid #f1f5f9; color: #1e293b; }
+    table.page-results-table table.cat-score-table td.num { text-align: right; font-family: 'JetBrains Mono', monospace; }
+    table.page-results-table table.cat-score-table tr:last-child td { border-bottom: none; }
+    @media (max-width: 900px) { .details-grid { grid-template-columns: 1fr; } }
+    .remaining-list li { margin: 0.15rem 0; }
+    .fix-tag { display: inline-block; font-size: 0.68rem; border: 1px solid #f59e0b; color: #b45309; border-radius: 5px; padding: 0 0.35rem; margin-left: 0.35rem; }
+    .same-snippet { background: #f1f5f9; color: #334155; padding: 0.5rem 0.75rem; border-radius: 4px; font-size: 0.8rem; line-height: 1.4; }
+    .chart-offline { padding: 2.5rem 1rem; text-align: center; color: #64748b; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+
+  <!-- 1. TOP BAR LEFT BRANDING & AUDIT META -->
+  <header class="top-bar">
+    <div class="container">
+      <div class="header-content">
+        <div class="header-title">
+          <div class="branding-pill">
+            <span id="brandPill"></span>
+          </div>
+          <h1>SEO &amp; AI Optimization Report</h1>
+          <p>Comprehensive reporting on SEO score improvements, metadata quality, SERP pixel safety, JSON-LD schema validation, Open Graph alignment, and crawl hygiene.</p>
+        </div>
+        <div class="header-meta" id="headerMeta"></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- 2. EXECUTIVE SUMMARY SECTION -->
+    <section class="executive-summary-card">
+      <h2>Executive Summary</h2>
+      <div id="execSummary"></div>
+    </section>
+
+    <!-- 3. CARDS SECTION -->
+    <section class="cards-row" id="cardsRow"></section>
+
+    <!-- 4. BEFORE VS. AFTER OPTIMIZATION IMPACT MATRIX -->
+    <section class="section-card">
+      <div class="section-header">
+        <div class="section-title">Before vs. After Optimization Impact Matrix</div>
+        <div class="section-subtitle">Category-by-category point changes across all on-page, architectural, and semantic factors.</div>
+      </div>
+
+      <div class="matrix-table-wrap">
+        <table class="matrix-table">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Before</th>
+              <th>After</th>
+              <th>Change</th>
+            </tr>
+          </thead>
+          <tbody id="matrixBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 5. CHARTS -->
+    <div class="charts-grid">
+      <div class="chart-container">
+        <h3>Character Count (Average Before vs. After)</h3>
+        <div class="chart-wrapper">
+          <canvas id="charLimitChart"></canvas>
+        </div>
+      </div>
+
+      <div class="chart-container">
+        <h3>Category Performance: Before vs. After Scores</h3>
+        <div class="chart-wrapper">
+          <canvas id="categoryComparisonChart"></canvas>
+        </div>
+        <p id="imagesNote" style="margin-top: 0.75rem; font-size: 0.8rem; color: #64748b;"></p>
+      </div>
+    </div>
+
+    <!-- 6. COMPREHENSIVE PAGE-BY-PAGE AUDIT LOG -->
+    <section class="section-card">
+      <div class="section-header">
+        <div class="section-title">Page-by-page results</div>
+        <div class="section-subtitle">Overall baseline and post-optimization scores for each audited template URL. Click any row or &quot;Details&quot; to inspect what changed.</div>
+      </div>
+
+      <div class="table-controls">
+        <div class="search-input-group">
+          <span class="search-icon">&#128269;</span>
+          <input type="text" id="pageSearchInput" placeholder="Filter by page filename or keyword..." oninput="handlePageSearch()">
+        </div>
+        <a class="export-csv-btn" id="exportCsvBtn" href="#" download hidden title="Download the CSV file saved with this report">&#11015; Export CSV</a>
+      </div>
+
+      <div class="table-wrap-page">
+        <table class="page-results-table">
+          <thead>
+            <tr>
+              <th>Page</th>
+              <th style="text-align: right;">Before</th>
+              <th style="text-align: right;">After</th>
+              <th style="text-align: right;">Change</th>
+              <th>Rating</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody id="pageResultsTbody">
+            <!-- Populated from the report data -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pagination-bar">
+        <div id="pagePaginationInfo"></div>
+        <div class="pagination-buttons" id="pagePaginationControls"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p id="footerMain"></p>
+    </div>
+  </footer>
+
+  <script id="report-data" type="application/json">{{REPORT_JSON}}</script>
+  <script>
+    const REPORT = JSON.parse(document.getElementById('report-data').textContent);
+    const META = REPORT.meta, SUM = REPORT.summary, CHG = REPORT.changes;
+    const auditData = REPORT.pages;
+    const client = META.client || META.site || 'this website';
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+    const plural = (n, one, many) => n + ' ' + (n === 1 ? one : (many || one + 's'));
+    const signed = (n, d) => (n > 0.004 ? '+' : '') + Number(n).toFixed(d == null ? 2 : d);
+    const pctOf = (n, total) => total ? (n / total * 100).toFixed(1) + '% of pages' : '0.0% of pages';
+    const changeClass = n => n > 0.004 ? 'val-change-pos' : (n < -0.004 ? 'val-change-neg' : 'val-change-neu');
+    const badgeFor = r => 'badge-' + String(r).toLowerCase().replace(/[^a-z]+/g, '-');
+
+    /* 1. header ------------------------------------------------------------ */
+    document.getElementById('brandPill').textContent = '\u26A1 ' + META.agency;
+    const metaRows = [
+      ['Client:', client, ''],
+      ['Website:', META.site || '–', ''],
+      ['Report Date:', META.date, ''],
+      ['Pages Processed:', String(SUM.processed), '']
+    ];
+    document.getElementById('headerMeta').innerHTML = metaRows.map(m =>
+      '<div><span class="label">' + escapeHtml(m[0]) + '</span> <span class="val"' + (m[2] ? ' style="' + m[2] + '"' : '') + '>' + escapeHtml(m[1]) + '</span></div>').join('');
+
+    /* 2. executive summary -------------------------------------------------- */
+    document.getElementById('execSummary').innerHTML =
+      '<p>This report consolidates the SEO enhancement output from the site-wide optimization run. A total of <strong>' + plural(SUM.processed, 'page') +
+      '</strong> were processed, with heavy coverage across metadata, heading structure, structured data, and cleanup of legacy keyword markup.</p>' +
+      '<p>The strongest gains in this run came from <strong>' + plural(CHG.titles, 'title update') + '</strong>, <strong>' + plural(CHG.descriptions, 'description rewrite') +
+      '</strong>, and <strong>' + plural(CHG.schema, 'schema addition') + '</strong>' +
+      (META.canonical_step ? ', after <strong>' + plural(CHG.canonical || 0, 'canonical tag') + '</strong> were added or corrected first' : '') + '. This creates a cleaner search footprint, stronger click-through messaging, and a better foundation for AI-generated search experiences.</p>' +
+      (META.estimate_note ? '<p style="background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:0.75rem 1rem;color:#92400e;"><strong>Estimated scores.</strong> ' + escapeHtml(META.estimate_note) + '</p>' : '');
+
+    /* 3. cards -------------------------------------------------------------- */
+    const total = SUM.processed;
+    const diff = SUM.delta;                                  // already (rounded after) - (rounded before)
+    const cards = [
+      ['META TITLES UPDATED', CHG.titles, pctOf(CHG.titles, total), ''],
+      ['DESCRIPTIONS UPDATED', CHG.descriptions, pctOf(CHG.descriptions, total), ''],
+      ['H1 TAGS IMPROVED', CHG.h1, pctOf(CHG.h1, total), ''],
+      ['SCHEMA ADDED', CHG.schema, pctOf(CHG.schema, total), ''],
+      ...(META.canonical_step ? [['CANONICAL TAGS SET', CHG.canonical || 0, pctOf(CHG.canonical || 0, total), '']] : []),
+      ['OVERALL SCORE', SUM.pages ? SUM.avg_before.toFixed(2) + ' \u2192 ' + SUM.avg_after.toFixed(2) : '\u2013',
+        SUM.pages ? (diff > 0.004 ? '+' + diff.toFixed(2) + ' point improvement' : (diff < -0.004 ? diff.toFixed(2) + ' point change' : 'no net change')) : 'no scored pages',
+        SUM.delta > 0.004 ? ' highlight-green' : '']
+    ];
+    REPORT.cards.forEach(c => { if (/cost/i.test(c.label)) cards.push([c.label.toUpperCase(), c.value, c.foot, '']); });
+    document.getElementById('cardsRow').innerHTML = cards.map(c =>
+      '<div class="metric-card' + c[3] + '"><div class="card-label">' + escapeHtml(c[0]) + '</div><div class="card-num">' + escapeHtml(String(c[1])) +
+      '</div><div class="card-footer-text">' + escapeHtml(c[2]) + '</div></div>').join('');
+
+    /* 4. matrix -------------------------------------------------------------- */
+    let matrix = REPORT.categories.map(c =>
+      '<tr><td>' + escapeHtml(c.name) + '</td><td>' + c.before.toFixed(2) + ' / ' + c.max + '</td><td>' + c.after.toFixed(2) + ' / ' + c.max +
+      '</td><td class="' + changeClass(c.change) + '">' + (c.change > 0.004 ? signed(c.change) : c.change.toFixed(2)) + '</td></tr>').join('');
+    if (SUM.pages) matrix += '<tr class="total-row"><td>Total</td><td>' + SUM.avg_before.toFixed(2) + ' / 100</td><td>' + SUM.avg_after.toFixed(2) +
+      ' / 100</td><td class="' + changeClass(SUM.delta) + '" style="font-size: 1.05rem;">' + signed(SUM.delta) + '</td></tr>';
+    document.getElementById('matrixBody').innerHTML = matrix || '<tr><td colspan="4" style="text-align:center; padding:1.5rem; color:#64748b;">No pages could be scored.</td></tr>';
+
+    /* 5. charts (Chart.js, same as the reference) ---------------------------- */
+    function initCharts() {
+      if (typeof Chart === 'undefined') {
+        document.querySelectorAll('.chart-wrapper').forEach(w => { w.innerHTML = '<div class="chart-offline">Charts need an internet connection to load.</div>'; });
+        return;
+      }
+      const L = REPORT.limits;
+      document.getElementById('imagesNote').innerHTML = 'Images updated (lazy-loading and alt-text fixes): <strong>' + CHG.images_total + '</strong>';
+      const scoreCats = REPORT.categories.filter(c => c.id !== 'content');
+      new Chart(document.getElementById('charLimitChart').getContext('2d'), {
+        type: 'bar',
+        data: {
+          labels: ['Meta Title', 'Meta Description'],
+          datasets: [
+            { label: 'Before Optimization', data: [L.title_avg_before, L.desc_avg_before],
+              backgroundColor: 'rgba(239, 68, 68, 0.75)', borderColor: '#ef4444', borderWidth: 1 },
+            { label: 'After Optimization (SERP Compliant)', data: [L.title_avg_after, L.desc_avg_after],
+              backgroundColor: 'rgba(16, 185, 129, 0.8)', borderColor: '#10b981', borderWidth: 1 }
+          ]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          scales: { y: { grid: { color: '#f1f5f9' }, title: { display: true, text: 'Average Character Count' } }, x: { grid: { display: false } } },
+          plugins: { tooltip: { callbacks: { footer: items => { const i = items[0].dataIndex, b = [L.title_avg_before, L.desc_avg_before][i], a = [L.title_avg_after, L.desc_avg_after][i], d = Math.round((a - b) * 10) / 10; return 'Difference: ' + (d > 0 ? '+' : '') + d.toFixed(1) + ' characters'; } } }, legend: { position: 'bottom', labels: { boxWidth: 12, font: { family: 'Plus Jakarta Sans', size: 11 } } } }
+        }
+      });
+      new Chart(document.getElementById('categoryComparisonChart').getContext('2d'), {
+        type: 'bar',
+        data: {
+          labels: scoreCats.map(c => c.short).concat(['Images Updated']),
+          datasets: [
+            { label: 'Before', data: scoreCats.map(c => c.before).concat([null]), backgroundColor: '#94a3b8', yAxisID: 'y' },
+            { label: 'After', data: scoreCats.map(c => c.after).concat([null]), backgroundColor: '#0284c7', yAxisID: 'y' },
+            { label: 'Images Updated (count, right axis)', data: scoreCats.map(() => null).concat([CHG.images_total]),
+              backgroundColor: '#10b981', yAxisID: 'y1', grouped: false, barPercentage: 0.45 }
+          ]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          scales: {
+            y: { min: 0, max: 20, grid: { color: '#f1f5f9' }, title: { display: true, text: 'Category Score' } },
+            y1: { position: 'right', min: 0, suggestedMax: Math.max(5, CHG.images_total), grid: { drawOnChartArea: false },
+                  ticks: { precision: 0 }, title: { display: true, text: 'Images Updated' } },
+            x: { grid: { display: false } }
+          },
+          plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { family: 'Plus Jakarta Sans', size: 11 } } } }
+        }
+      });
+    }
+
+    /* 6. page-by-page table (same rows, search and pagination as the reference) */
+    let filteredPages = [...auditData];
+    let currentPageNum = 1;
+    const pageItemsPerPage = 15;
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initCharts();
+      renderPageTable();
+      document.getElementById('footerMain').innerHTML = 'Report prepared by <strong>' + escapeHtml(META.agency) + '</strong> for ' + escapeHtml(client);
+    });
+
+    function handlePageSearch() {
+      const q = document.getElementById('pageSearchInput').value.toLowerCase().trim();
+      filteredPages = auditData.filter(item => (item.rel || '').toLowerCase().includes(q) || (item.name || '').toLowerCase().includes(q));
+      currentPageNum = 1;
+      renderPageTable();
+    }
+
+    function lengthNote(len, max) {
+      return len + ' chars (' + (len <= max ? 'SERP safe' : 'over the ' + max + ' limit') + ')';
+    }
+
+    function renderPageTable(all) {
+      const tbody = document.getElementById('pageResultsTbody');
+      tbody.innerHTML = '';
+
+      const startIndex = all ? 0 : (currentPageNum - 1) * pageItemsPerPage;
+      const endIndex = all ? filteredPages.length : Math.min(startIndex + pageItemsPerPage, filteredPages.length);
+      const sliceData = filteredPages.slice(startIndex, endIndex);
+
+      if (sliceData.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding: 2.5rem; color: #64748b;">No pages found matching query.</td></tr>';
+        updatePagination(0, 0, 0);
+        document.getElementById('pagePaginationControls').innerHTML = '';
+        return;
+      }
+
+      sliceData.forEach((row, idx) => {
+        const rowId = 'page-row-' + (startIndex + idx);
+        const tr = document.createElement('tr');
+        tr.className = 'expandable-page-row';
+        const left = row.remaining.length;
+        const crit = row.critical.map(c => '<span class="' + (c.indexOf('went DOWN') >= 0 ? 'warn-chip' : 'crit-chip') + '">' + escapeHtml(c) + '</span>').join('');
+
+        tr.innerHTML = `
+          <td style="font-family:'JetBrains Mono', monospace; font-weight:600; color:#1e293b;" onclick="togglePageDetails('${rowId}')">${escapeHtml(row.rel)}</td>
+          <td style="text-align: right; font-family:'JetBrains Mono', monospace;" onclick="togglePageDetails('${rowId}')">${row.before.toFixed(2)}</td>
+          <td style="text-align: right; font-family:'JetBrains Mono', monospace; font-weight:700;" onclick="togglePageDetails('${rowId}')">${row.after.toFixed(2)}</td>
+          <td class="${changeClass(row.change)}" style="text-align: right; font-family:'JetBrains Mono', monospace;" onclick="togglePageDetails('${rowId}')">${row.change > 0.004 ? signed(row.change) : row.change.toFixed(2)}</td>
+          <td onclick="togglePageDetails('${rowId}')"><span class="badge-pill ${badgeFor(row.rating)}">${escapeHtml(row.rating)}</span></td>
+          <td>
+            <button type="button" class="what-is-left-btn" onclick="togglePageDetails('${rowId}')">
+              <span>&#9654; More info</span>
+            </button>
+          </td>
+        `;
+
+        const detailsTr = document.createElement('tr');
+        detailsTr.id = rowId;
+        detailsTr.className = 'page-details-row';
+
+        const oldTitle = row.old_title || 'N/A', newTitle = row.new_title || 'N/A';
+        const oldDesc = row.old_desc || 'N/A', newDesc = row.new_desc || 'N/A';
+        const snippet = (o, n) => o !== n
+          ? `<div class="old-snippet">${escapeHtml(o)}</div><div class="new-snippet">${escapeHtml(n)}</div>`
+          : `<div class="same-snippet">${escapeHtml(n)} <em>(unchanged)</em></div>`;
+        const remaining = left
+          ? '<ul class="remaining-list">' + row.remaining.map(r => '<li>' + escapeHtml(r.label) + ' &mdash; <span class="gain-up">&uarr; ' + (+Number(r.gain).toFixed(2)) + '</span>' +
+              (r.reason ? ' (' + escapeHtml(r.reason) + ')' : '') + (r.manual ? '<span class="fix-tag">fix on the page</span>' : '') + '</li>').join('') + '</ul>'
+          : ' Nothing left to improve on the scored checks.';
+
+        const catRows = REPORT.categories.map((c, k) => {
+          const b = +row.cb[k].toFixed(2), a = +row.ca[k].toFixed(2), d = Math.round((a - b) * 100) / 100;   // change = difference of the numbers shown
+          return '<tr><td>' + escapeHtml(c.name) + '</td><td class="num">' + b.toFixed(2) + '</td><td class="num">' + a.toFixed(2) +
+                 '</td><td class="num ' + changeClass(d) + '">' + (d > 0.004 ? signed(d) : d.toFixed(2)) + '</td></tr>';
+        }).join('');
+        const tb = +row.before.toFixed(2), ta = +row.after.toFixed(2), td = Math.round((ta - tb) * 100) / 100;
+        const totalRow = '<tr style="font-weight:800; border-top:2px solid #cbd5e1;"><td>Total</td><td class="num">' + tb.toFixed(2) + '</td><td class="num">' + ta.toFixed(2) +
+                 '</td><td class="num ' + changeClass(td) + '">' + (td > 0.004 ? signed(td) : td.toFixed(2)) + '</td></tr>';
+
+        detailsTr.innerHTML = `
+          <td colspan="6" style="padding:0;">
+            <div class="page-details-box">
+              ${crit ? '<div style="margin-bottom:0.85rem;">' + crit + '</div>' : ''}
+              <div class="diff-two-col">
+                <div class="diff-box">
+                  <h5>Title Tag Before &rarr; After</h5>
+                  ${snippet(oldTitle, newTitle)}
+                  <div style="font-size: 0.725rem; color:#64748b; margin-top:0.35rem; font-family:'JetBrains Mono', monospace;">
+                    Length: ${lengthNote(row.title_len, REPORT.limits.title_rec)}
+                  </div>
+                </div>
+
+                <div class="diff-box">
+                  <h5>Meta Description Before &rarr; After</h5>
+                  ${snippet(oldDesc, newDesc)}
+                  <div style="font-size: 0.725rem; color:#64748b; margin-top:0.35rem; font-family:'JetBrains Mono', monospace;">
+                    Length: ${lengthNote(row.desc_len, REPORT.limits.desc_rec)}
+                  </div>
+                </div>
+              </div>
+
+              <div class="details-grid">
+                <div class="cat-card">
+                  <h5>Category scores &mdash; Before &rarr; After</h5>
+                  <table class="cat-score-table">
+                    <thead><tr><th>Category</th><th>Before</th><th>After</th><th>Change</th></tr></thead>
+                    <tbody>${catRows}${totalRow}</tbody>
+                  </table>
+                </div>
+                <div class="actions-card">
+                  <div><strong>Actions to improve score:</strong>${remaining}</div>
+                  ${row.notes.length ? `<div style="margin-top:0.25rem; color:#b45309;"><strong>Note:</strong> ${escapeHtml(row.notes.join('; '))}</div>` : ''}
+                </div>
+              </div>
+            </div>
+          </td>
+        `;
+
+        tbody.appendChild(tr);
+        tbody.appendChild(detailsTr);
+      });
+
+      updatePagination(startIndex + 1, endIndex, filteredPages.length);
+      if (all) document.getElementById('pagePaginationControls').innerHTML = ''; else renderPaginationButtons();
+    }
+
+    function togglePageDetails(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.toggle('open');
+      }
+    }
+
+    function updatePagination(start, end, total) {
+      const info = document.getElementById('pagePaginationInfo');
+      if (total === 0) {
+        info.innerText = 'Showing 0 results';
+      } else {
+        info.innerText = `Showing ${start} to ${end} of ${total} pages`;
+      }
+    }
+
+    function renderPaginationButtons() {
+      const totalPages = Math.ceil(filteredPages.length / pageItemsPerPage);
+      const container = document.getElementById('pagePaginationControls');
+      container.innerHTML = '';
+
+      if (totalPages <= 1) return;
+
+      const prevBtn = document.createElement('button');
+      prevBtn.className = 'page-btn';
+      prevBtn.innerText = '\u00AB Prev';
+      prevBtn.disabled = currentPageNum === 1;
+      prevBtn.onclick = () => { currentPageNum--; renderPageTable(); };
+      container.appendChild(prevBtn);
+
+      for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement('button');
+        btn.className = `page-btn ${i === currentPageNum ? 'active' : ''}`;
+        btn.innerText = i;
+        btn.onclick = () => { currentPageNum = i; renderPageTable(); };
+        container.appendChild(btn);
+      }
+
+      const nextBtn = document.createElement('button');
+      nextBtn.className = 'page-btn';
+      nextBtn.innerText = 'Next \u00BB';
+      nextBtn.disabled = currentPageNum === totalPages;
+      nextBtn.onclick = () => { currentPageNum++; renderPageTable(); };
+      container.appendChild(nextBtn);
+    }
+
+    /* CSV export: every row that matches the current search (not only the 15 shown) */
+    /* Export CSV = a link to the CSV the application saved next to this report (nothing is generated here) */
+    (function () {
+      const link = document.getElementById('exportCsvBtn');
+      if (META.csv_file) { link.href = encodeURI(META.csv_file); link.setAttribute('download', META.csv_file); link.hidden = false; }
+    })();
+
+    /* printing: show every page of the table, then go back to 15 per page */
+    window.addEventListener('beforeprint', () => renderPageTable(true));
+    window.addEventListener('afterprint', () => renderPageTable());
+  </script>
+</body>
+</html>

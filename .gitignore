@@ -1,0 +1,26 @@
+# build output
+build/
+dist/
+__pycache__/
+*.pyc
+test-results/
+
+# local backups and snapshots
+bkp/
+
+# client reports / reference material
+tools/reference/
+tools/icon_sheet.png
+
+# editor / OS
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
+
+# local settings and secrets (the app keeps these outside the project, this is a safety net)
+.env
+*.key
+
+# contains local client project paths
+tools/realworld_check.py
